@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useStripe, useElements, PaymentElement } from "@stripe/react-stripe-js";
 import convertToSubCurrency from "@/app/lib/ConvertToSubCurrency";
@@ -19,10 +18,8 @@ export default function CheckoutForm({ amount, currency = "usd" }: Props) {
   useEffect(() => {
     const fetchClientSecret = async () => {
       try {
-        // Convert amount to subunits
         const amountInSubunits = convertToSubCurrency(amount, currency);
 
-        // Fetch client secret from API
         const response = await fetch("/api/create-payment-intent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -36,7 +33,12 @@ export default function CheckoutForm({ amount, currency = "usd" }: Props) {
 
         if (!response.ok || !data.clientSecret) {
           throw new Error(data.error || "Payment initialization failed");
+        }if (isNaN(amount) || amount <= 0) {
+          throw new Error("Invalid amount. Amount must be a positive number.");
         }
+        // if (!supportedCurrencies.includes(currency.toLowerCase())) {
+        //   throw new Error(`Unsupported currency: ${currency}`);
+        // }
 
         setClientSecret(data.clientSecret);
       } catch (err) {
@@ -60,10 +62,9 @@ export default function CheckoutForm({ amount, currency = "usd" }: Props) {
     setErrorMessage("");
 
     try {
-      // Confirm payment with Stripe
       const { error } = await stripe.confirmPayment({
         elements,
-        clientSecret, // Pass clientSecret here
+        clientSecret,
         confirmParams: {
           return_url: `${window.location.origin}/payment-success`,
         },
@@ -72,7 +73,6 @@ export default function CheckoutForm({ amount, currency = "usd" }: Props) {
 
       if (error) throw error;
 
-      // Redirect on success
       window.location.href = "/payment-success";
     } catch (err) {
       setErrorMessage(

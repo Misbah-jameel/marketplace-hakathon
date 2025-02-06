@@ -16,7 +16,7 @@ export default function AdminLayout({
     // Clear the login state
     localStorage.removeItem("isLoggedIn")
     // Redirect to login page
-    router.push("/")
+    router.push("/login/login")
   }
 
   return (

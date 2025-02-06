@@ -1,29 +1,18 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { Card, CardContent, CardHeader, CardTitle } from "../../../../components/ui/card"
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts"
+import { Card, CardContent, CardHeader, CardTitle } from "../../../../components/ui/card";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
 
 const data = [
   { name: "Product A", value: 400 },
   { name: "Product B", value: 300 },
   { name: "Product C", value: 300 },
   { name: "Product D", value: 200 },
-]
+];
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"]
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 export default function DashboardPage() {
-  const router = useRouter()
-
-  useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"
-    if (!isLoggedIn) {
-      router.push("/admin/dashboard")
-    }
-  }, [router])
-
   return (
     <div className="space-y-6">
       <h2 className="text-3xl font-bold tracking-tight">Dashboard Overview</h2>
@@ -88,10 +77,7 @@ export default function DashboardPage() {
             </div>
           </CardContent>
         </Card>
-
-        {/* You can add another card here for additional dashboard content */}
       </div>
     </div>
-  )
+  );
 }
-

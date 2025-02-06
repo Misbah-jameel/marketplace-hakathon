@@ -1,7 +1,7 @@
 import { cookies } from "next/headers"
 
 // This is a simple in-memory store. In a real app, you'd use a database.
-const users = [{ id: 1, email: "user@example.com", password: "password123" }]
+const users = [{ id: 1, email: "dayomuhammad892@gmail.com", password: "(Muhammad123)" }]
 
 export function findUser(email: string, password: string) {
   return users.find((user) => user.email === email && user.password === password)

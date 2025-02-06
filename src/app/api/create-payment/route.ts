@@ -1,9 +1,8 @@
-// app/api/create-payment-intent/route.ts
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-//   apiVersion: "2024-04-10",
+  // apiVersion: "2025-02-07", 
 });
 
 export async function POST(request: Request) {

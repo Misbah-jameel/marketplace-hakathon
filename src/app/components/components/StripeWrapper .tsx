@@ -1,16 +1,15 @@
 "use client";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import CheckoutForm from "@/app/components/CheckoutForm";
-import convertToSubCurrency from "@/app/lib/ConvertToSubCurrency"; // Uncommented import
+import CheckoutForm from "./CheckoutForm";
+import convertToSubCurrency from "@/app/lib/ConvertToSubCurrency";
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+const stripePromise = loadStripe("pk_test_51QmBnPCcZIekufMkZWyWHKZOMGoxm7WXgWoLE6VtOnDNRrpEBmYtZu6D8i4nKeyWNAbBrcQD3Jg3YqaDmrCIFuIp00fgXSyqL6");
 
 export default function StripeWrapper({ amount, currency = "usd" }: { 
   amount: number; 
   currency?: string 
 }) {
-  // Validate and normalize currency
   const normalizedCurrency = currency.toLowerCase();
   const supportedCurrencies = ["usd", "eur", "jpy", "inr", "gbp", "aud"];
 
@@ -18,7 +17,6 @@ export default function StripeWrapper({ amount, currency = "usd" }: {
     throw new Error(`Unsupported currency: ${currency}`);
   }
 
-  // Convert to subunits with error handling
   let stripeAmount: number;
   try {
     stripeAmount = convertToSubCurrency(amount, normalizedCurrency);
@@ -26,9 +24,13 @@ export default function StripeWrapper({ amount, currency = "usd" }: {
     throw new Error(`Currency conversion failed: ${(error as Error).message}`);
   }
 
-  // Validate Stripe amount requirements
   if (stripeAmount < 1) {
     throw new Error('Amount too small');
+  }if (isNaN(amount) || amount <= 0) {
+    throw new Error("Invalid amount. Amount must be a positive number.");
+  }
+  if (!supportedCurrencies.includes(currency.toLowerCase())) {
+    throw new Error(`Unsupported currency: ${currency}`);
   }
 
   const options = {

@@ -3,10 +3,7 @@ import { cookies } from "next/headers";
 
 export async function POST() {
   const cookieStore = cookies();
-  
-  // Delete the cookie instead of setting it to empty
-  (await
-    cookieStore).delete("userId");
+  (await cookieStore).delete("userId");
 
   return NextResponse.json({ success: true }, { status: 200 });
 }
@@ -14,7 +11,13 @@ export async function POST() {
 // import { cookies } from "next/headers";
 
 // export async function POST() {
-//   (await cookies()).delete("userId");
+//   const cookieStore = cookies();
 
-//   return NextResponse.json({ success: true });
+//   (await
+//         cookieStore).delete("userId");
+
+//   return NextResponse.json(
+//     { success: true, message: "Cookie deleted successfully" },
+//     { status: 200 }
+//   );
 // }
