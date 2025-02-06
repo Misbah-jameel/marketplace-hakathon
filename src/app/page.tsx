@@ -1,101 +1,264 @@
+// // import HeroSection from "./components/HeroSection";
+// import Link from "next/link";
+// import Image from "next/image";
+// import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
+// import { Avatar, AvatarFallback, AvatarImage } from "../../components/ui/avatar";
+
+// const products = [
+//   {
+//     id: 1,
+//     name: "Eco-friendly Water Bottle",
+//     price: 25,
+//     image: "/cloth3.avif",
+//     rating: 4.5,
+//   },
+//   {
+//     id: 2,
+//     name: "Organic Cotton T-shirt",
+//     price: 30,
+//     image: "/cloth2.avif",
+//     rating: 4.2,
+//   },
+//   {
+//     id: 3,
+//     name: "Recycled Plastic Backpack",
+//     price: 65,
+//     image: "/cloth1.avif",
+//     rating: 4.8,
+//   },
+// ];
+
+// const testimonials = [
+//   {
+//     name: "Alice Johnson",
+//     avatar: "/placeholder.svg",
+//     testimonial: "I love the eco-friendly products! They're high quality and make me feel good about my purchases.",
+//   },
+//   {
+//     name: "Bob Smith",
+//     avatar: "/placeholder.svg",
+//     testimonial: "The customer service is outstanding. They really care about their customers and the environment.",
+//   },
+//   {
+//     name: "Carol Davis",
+//     avatar: "/placeholder.svg",
+//     testimonial: "UniqueShop has become my go-to for sustainable lifestyle products. Highly recommended!",
+//   },
+// ];
+
+// export default function Home() {
+//   return (
+//     <div>
+//       {/* <HeroSection />  */}
+      
+//       <div className="space-y-12">
+//         <section className="container mx-auto px-4">
+//           <h2 className="text-3xl font-semibold mb-8 text-pink-500">Featured Products</h2>
+//           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+//             {products.map((product) => (
+//               <Card key={product.id} className="overflow-hidden">
+//                 <CardHeader className="p-0">
+//                   <Image
+//                     src={product.image || "/data/products"}
+//                     alt={product.name}
+//                     width={400}
+//                     height={300}
+//                     className="w-full h-48 object-cover"
+//                   />
+//                 </CardHeader>
+//                 <CardContent className="p-4">
+//                   <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
+//                   <p className="text-purple-600 font-bold">${product.price}</p>
+//                   <div className="flex items-center mt-2">
+//                     {Array.from({ length: 5 }).map((_, index) => (
+//                       <svg
+//                         key={index}
+//                         className={`w-5 h-5 ${index < Math.floor(product.rating) ? "text-yellow-400" : "text-gray-300"}`}
+//                         fill="currentColor"
+//                         viewBox="0 0 20 20"
+//                         xmlns="http://www.w3.org/2000/svg"
+//                       >
+//                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+//                       </svg>
+//                     ))}
+//                     <span className="ml-2 text-gray-600">({product.rating})</span>
+//                   </div>
+//                 </CardContent>
+//                 <CardFooter>
+//                   <Link
+//                     href={`/product/${product.id}`}
+//                     className="w-full text-center bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition-colors duration-200"
+//                   >
+//                     View Details
+//                   </Link>
+//                 </CardFooter>
+//               </Card>
+//             ))}
+//           </div>
+//         </section>
+
+//         <section className="bg-gray-100 py-12">
+//           <div className="container mx-auto px-4">
+//             <h2 className="text-3xl font-semibold mb-8 text-center text-pink-500">Customer Testimonials</h2>
+//             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+//               {testimonials.map((testimonial, index) => (
+//                 <Card key={index} className="bg-white">
+//                   <CardContent className="p-6">
+//                     <div className="flex items-center mb-4">
+//                       <Avatar className="h-12 w-12">
+//                         <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+//                         <AvatarFallback>
+//                           {testimonial.name
+//                             .split(" ")
+//                             .map((n) => n[0])
+//                             .join("")}
+//                         </AvatarFallback>
+//                       </Avatar>
+//                       <div className="ml-4">
+//                         <CardTitle className="text-lg">{testimonial.name}</CardTitle>
+//                       </div>
+//                     </div>
+//                     <p className="text-gray-600">{testimonial.testimonial}</p>
+//                   </CardContent>
+//                 </Card>
+//               ))}
+//             </div>
+//           </div>
+//         </section>
+//       </div>
+//     </div>
+//   );
+// }
+
+"use client";
+
+import Link from "next/link";
 import Image from "next/image";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "../../components/ui/avatar";
+import HeroSection from "./components/HeroSection";
+
+const products = [
+  {
+    id: 1,
+    name: "Eco-friendly Water Bottle",
+    price: 25,
+    image: "/botel.avif",
+    rating: 4.5,
+  },
+  {
+    id: 2,
+    name: "Organic Cotton T-shirt",
+    price: 30,
+    image: "/cloth3.avif",
+    rating: 4.2,
+  },
+  {
+    id: 3,
+    name: "Recycled Plastic Backpack",
+    price: 65,
+    image: "/plastic.avif",
+    rating: 4.8,
+  },
+];
+
+const testimonials = [
+  {
+    name: "Alice Johnson",
+    avatar: "/alice.jpeg", // Ensure image is in public folder
+    testimonial: "I love the eco-friendly products! They're high quality and make me feel good about my purchases.",
+  },
+  {
+    name: "Bob Smith",
+    avatar: "/bob.jpg", // Ensure image is in public folder
+    testimonial: "The customer service is outstanding. They really care about their customers and the environment.",
+  },
+  {
+    name: "Carol Davis",
+    avatar: "/Carol.jpg", // Ensure image is in public folder
+    testimonial: "UniqueShop has become my go-to for sustainable lifestyle products. Highly recommended!",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div>
+ 
+      <div className="space-y-12">
+               <HeroSection /> 
+        <section className="container mx-auto px-4">
+          <h2 className="text-3xl font-semibold mb-8 text-pink-500">Featured Products</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {products.map((product) => (
+              <Card key={product.id} className="overflow-hidden">
+                <CardHeader className="p-0">
+                  <Image
+                    src={product.image || "/data/products"} // Ensure correct path
+                    alt={product.name}
+                    width={400}
+                    height={300}
+                    className="w-full h-48 object-cover"
+                  />
+                </CardHeader>
+                <CardContent className="p-4">
+                  <CardTitle className="text-lg mb-2">{product.name}</CardTitle>
+                  <p className="text-purple-600 font-bold">${product.price}</p>
+                  <div className="flex items-center mt-2">
+                    {Array.from({ length: 5 }).map((_, index) => (
+                      <svg
+                        key={index}
+                        className={`w-5 h-5 ${index < Math.floor(product.rating) ? "text-yellow-400" : "text-gray-300"}`}
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                    <span className="ml-2 text-gray-600">({product.rating})</span>
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Link
+                    href={`/product/${product.id}`}
+                    className="w-full text-center bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition-colors duration-200"
+                  > View Details
+                  </Link>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <section className="bg-gray-100 py-12">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-semibold mb-8 text-center text-pink-500">Customer Testimonials</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {testimonials.map((testimonial, index) => (
+                <Card key={index} className="bg-white">
+                  <CardContent className="p-6">
+                    <div className="flex items-center mb-4">
+                      <Avatar className="h-12 w-12">
+                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                        <AvatarFallback>
+                          {testimonial.avatar
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="ml-4">
+                        <CardTitle className="text-lg">{testimonial.name}</CardTitle>
+                      </div>
+                    </div>
+                    <p className="text-gray-600">{testimonial.testimonial}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
