@@ -11,10 +11,11 @@ const products = [
 
 const productMap = new Map(products.map((product) => [product.id, product]));
 
-export async function GET(req: Request, context: { params: { id: string } }) {
+export async function GET(req: Request) {
   try {
-    // Access params from context
-    const { id } = context.params; 
+    // Extract id from the URL using regex
+    const url = new URL(req.url);
+    const id = url.pathname.split('/')[3]; // Extract id from the URL
     
     // Convert id to number
     const parsedId = Number.parseInt(id);
@@ -25,7 +26,7 @@ export async function GET(req: Request, context: { params: { id: string } }) {
 
     // Look up product by id
     const product = productMap.get(parsedId);
-    
+
     // Return product or not found
     if (product) {
       return NextResponse.json(product);
