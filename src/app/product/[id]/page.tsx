@@ -1,46 +1,54 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-"use client"
+"use client";
 
-import Image from "next/image"
-import { Caveat } from "next/font/google"
-import { useState, useEffect } from "react"
-import { Star, Loader, AlertCircle } from "lucide-react"
-import AddToCartButton from "@/app/components/AddToCardButton"
-import AddToWishlistButton from "@/app/components/AddToWishlist"
-import { RadioGroup, RadioGroupItem } from "../../../../components/ui/radio-group"
-import { products } from "@/app/data/products"
+import Image from "next/image";
+import { Caveat } from "next/font/google";
+import { useState, useEffect } from "react";
+import { Star, Loader, AlertCircle } from "lucide-react";
+import AddToCartButton from "@/app/components/AddToCardButton";
+import AddToWishlistButton from "@/app/components/AddToWishlist";
+import { RadioGroup, RadioGroupItem } from "../../../../components/ui/radio-group";
+import { products } from "@/app/data/products";
 
-const caveat = Caveat({ subsets: ["latin"] })
+const caveat = Caveat({ subsets: ["latin"] });
 
-export default function ProductPage({ params }: { params: { id: string } }) {
-  const [product, setProduct] = useState<(typeof products)[0] | null>(null)
-  const [selectedColor, setSelectedColor] = useState<string>("")
-  const [selectedSize, setSelectedSize] = useState<string>("")
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+interface PageProps {
+  params: { id: string };
+  searchParams?: Record<string, string | string[] | undefined>;
+}
+
+export default function ProductPage({ params }: PageProps) {
+  const [product, setProduct] = useState<(typeof products)[0] | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string>("");
+  const [selectedSize, setSelectedSize] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProduct = () => {
-      setIsLoading(true)
-      setError(null)
+      setIsLoading(true);
+      setError(null);
+
       try {
-        const foundProduct = products.find((p) => p.id === Number.parseInt(params.id))
+        const productId = Number(params.id); // Safe conversion
+        const foundProduct = products.find((p) => p.id === productId);
+
         if (foundProduct) {
-          setProduct(foundProduct)
-          setSelectedColor(foundProduct.colors[0])
-          setSelectedSize(foundProduct.availableSizes[0])
+          setProduct(foundProduct);
+          setSelectedColor(foundProduct.colors[0]);
+          setSelectedSize(foundProduct.availableSizes[0]);
         } else {
-          throw new Error("Product not found")
+          throw new Error("Product not found");
         }
       } catch (err) {
-        setError("An error occurred while loading the product. Please try again.")
+        setError("An error occurred while loading the product. Please try again.");
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
+    };
 
-    fetchProduct()
-  }, [params.id])
+    fetchProduct();
+  }, [params.id]);
 
   const renderStars = (rating: number) => {
     return Array(5)
@@ -48,19 +56,17 @@ export default function ProductPage({ params }: { params: { id: string } }) {
       .map((_, i) => (
         <Star
           key={i}
-          className={`w-5 h-5 ${
-            i < Math.floor(rating) ? "fill-yellow-400 text-yellow-400" : "fill-gray-200 text-gray-200"
-          }`}
+          className={`w-5 h-5 ${i < Math.floor(rating) ? "fill-yellow-400 text-yellow-400" : "fill-gray-200 text-gray-200"}`}
         />
-      ))
-  }
+      ));
+  };
 
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Loader className="w-10 h-10 animate-spin text-pink-500" />
       </div>
-    )
+    );
   }
 
   if (error) {
@@ -69,11 +75,11 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         <AlertCircle className="w-16 h-16 text-red-500 mb-4" />
         <p className="text-red-500 mb-4 text-center">{error}</p>
       </div>
-    )
+    );
   }
 
   if (!product) {
-    return <div className="text-center mt-8">Product not found</div>
+    return <div className="text-center mt-8">Product not found</div>;
   }
 
   return (
@@ -130,6 +136,5 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

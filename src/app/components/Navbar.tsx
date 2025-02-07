@@ -1,5 +1,5 @@
 "use client"
-
+import Image from 'next/image'
 import Link from "next/link"
 import { useState } from "react"
 import { ShoppingCart, Heart, User, ShoppingBag, ChevronDown, LogOut, Menu, X } from "lucide-react"
@@ -150,7 +150,14 @@ function DesktopMenu({ user, cartItemCount, handleLogout }: MenuProps) {
       <DropdownMenu>
         <DropdownMenuTrigger className="p-2 flex items-center space-x-2 rounded-md text-pink-300 hover:text-pink-500 hover:bg-gray-900 transition-colors duration-200">
           {user && user.imageUrl ? (
-            <img src={user.imageUrl || "/2.jpg"} alt="Profile" className="w-8 h-8 rounded-full" />
+          <Image 
+          src={user.imageUrl || "/2.jpg"} 
+          alt="Profile" 
+          width={32} 
+          height={32} 
+          className="w-8 h-8 rounded-full" 
+        />
+        
           ) : (
             <User className="h-6 w-6" />
           )}
