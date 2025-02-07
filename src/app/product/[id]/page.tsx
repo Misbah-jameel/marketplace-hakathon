@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-// /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -20,10 +19,13 @@ interface PageProps {
 
 export default function ProductPage({ params }: PageProps) {
   const [product, setProduct] = useState<(typeof products)[0] | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string>("");
-  const [selectedSize, setSelectedSize] = useState<string>("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string>(""); 
+  const [selectedSize, setSelectedSize] = useState<string>(""); 
+  const [isLoading, setIsLoading] = useState(true); 
+  const [error, setError] = useState<string | null>(null); 
+
+  // Get the productId directly from params
+  const productId = params.id;
 
   useEffect(() => {
     const fetchProduct = () => {
@@ -31,8 +33,8 @@ export default function ProductPage({ params }: PageProps) {
       setError(null);
 
       try {
-        const productId = Number(params.id); // Safe conversion from string to number
-        const foundProduct = products.find((p) => p.id === productId);
+        const id = Number(productId); // Safe conversion from string to number
+        const foundProduct = products.find((p) => p.id === id);
 
         if (foundProduct) {
           setProduct(foundProduct);
@@ -48,8 +50,10 @@ export default function ProductPage({ params }: PageProps) {
       }
     };
 
-    fetchProduct();
-  }, [params.id]); // Correctly use params.id here
+    if (productId) {
+      fetchProduct();
+    }
+  }, [productId]);
 
   const renderStars = (rating: number) => {
     return Array(5)
