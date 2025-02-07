@@ -30,7 +30,7 @@ export default function SettingsPage() {
             <span>Enable maintenance mode</span>
           </div>
         </div>
-        <Button type="submit">Save Settings</Button>
+        <Button type="submit" className="bg-green-600">Save Settings</Button>
       </form>
     </div>
   )
