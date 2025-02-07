@@ -1,5 +1,3 @@
-
-
 import "./globals.css"
 import { Montserrat, Lora, Inter } from 'next/font/google'
 import { ClerkProvider } from "@clerk/nextjs"
@@ -9,18 +7,17 @@ import React from "react"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  variable: "--font-montserrat", 
 })
-
 
 const lora = Lora({
   subsets: ["latin"],
-  variable: "--font-lora",
+  variable: "--font-lora",  
 })
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-inter",  
 })
 
 export default function RootLayout({

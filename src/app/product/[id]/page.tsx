@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+// /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import { useRouter } from 'next/router';
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import { Caveat } from "next/font/google";
-import { useState, useEffect } from "react";
 import { Star, Loader, AlertCircle } from "lucide-react";
 import AddToCartButton from "@/app/components/AddToCardButton";
 import AddToWishlistButton from "@/app/components/AddToWishlist";
-import { RadioGroup, RadioGroupItem } from "../../../components/ui/radio-group";
+import { RadioGroup, RadioGroupItem } from "../../../../components/ui/radio-group";
 import { products } from "@/app/data/products";
 
 const caveat = Caveat({ subsets: ["latin"] });
@@ -30,7 +31,7 @@ export default function ProductPage({ params }: PageProps) {
       setError(null);
 
       try {
-        const productId = Number(params.id); // Safe conversion
+        const productId = Number(params.id); // Safe conversion from string to number
         const foundProduct = products.find((p) => p.id === productId);
 
         if (foundProduct) {
@@ -48,7 +49,7 @@ export default function ProductPage({ params }: PageProps) {
     };
 
     fetchProduct();
-  }, [params.id]);
+  }, [params.id]); // Correctly use params.id here
 
   const renderStars = (rating: number) => {
     return Array(5)
