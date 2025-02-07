@@ -1,5 +1,3 @@
-// src/app/api/product/[id]/route.ts
-
 import { NextRequest, NextResponse } from "next/server";
 
 // Sample product data
@@ -11,12 +9,11 @@ const products = [
 
 const productMap = new Map(products.map((product) => [product.id, product]));
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   try {
-    // Extract id from the URL using regex
-    const url = new URL(req.url);
-    const id = url.pathname.split('/')[3]; // Extract id from the URL
-    
+    // Extract id from params
+    const { id } = params;
+
     // Convert id to number
     const parsedId = Number.parseInt(id);
     if (isNaN(parsedId)) {
