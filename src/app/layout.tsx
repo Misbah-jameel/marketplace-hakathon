@@ -54,6 +54,7 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 })
 
+
 const lora = Lora({
   subsets: ["latin"],
   variable: "--font-lora",

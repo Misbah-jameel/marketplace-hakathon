@@ -9,15 +9,14 @@ const products = [
 
 const productMap = new Map(products.map((product) => [product.id, product]));
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest) {
   try {
-    // Extract id from params
-    const { id } = params;
+    // Extract product ID from URL
+    const id = req.nextUrl.pathname.split("/").pop();
 
     // Convert id to number
-    const parsedId = Number.parseInt(id);
+    const parsedId = Number(id);
     if (isNaN(parsedId)) {
-      console.error(`Invalid product ID: ${id}`);
       return new NextResponse("Invalid product ID", { status: 400 });
     }
 
@@ -28,7 +27,6 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     if (product) {
       return NextResponse.json(product);
     } else {
-      console.error(`Product not found for ID: ${parsedId}`);
       return new NextResponse("Product not found", { status: 404 });
     }
   } catch (error) {
