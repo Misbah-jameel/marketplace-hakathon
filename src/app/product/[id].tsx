@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-
+import { useRouter } from 'next/router';
 import Image from "next/image";
 import { Caveat } from "next/font/google";
 import { useState, useEffect } from "react";
 import { Star, Loader, AlertCircle } from "lucide-react";
 import AddToCartButton from "@/app/components/AddToCardButton";
 import AddToWishlistButton from "@/app/components/AddToWishlist";
-import { RadioGroup, RadioGroupItem } from "../../../../components/ui/radio-group";
+import { RadioGroup, RadioGroupItem } from "../../../components/ui/radio-group";
 import { products } from "@/app/data/products";
 
 const caveat = Caveat({ subsets: ["latin"] });

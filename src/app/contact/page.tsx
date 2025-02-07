@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { useState } from "react"
 import { motion } from "framer-motion"
@@ -10,13 +10,10 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically handle the form submission
     console.log("Form submitted:", { name, email, message })
-    // Reset form fields
     setName("")
     setEmail("")
     setMessage("")
-    // Show a success message (in a real app, you'd want to handle this more robustly)
     alert("Thank you for your message! We will get back to you soon.")
   }
 
@@ -79,4 +76,3 @@ export default function ContactPage() {
     </div>
   )
 }
-

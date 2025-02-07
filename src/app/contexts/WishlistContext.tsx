@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { createContext, useContext, useState, useEffect } from "react"
 
@@ -63,4 +63,3 @@ export const useWishlist = () => {
   }
   return context
 }
-

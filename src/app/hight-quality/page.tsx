@@ -20,7 +20,7 @@ export default function HighQualityPage() {
         {highQualityProducts.map((product) => (
           <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden">
             <Image
-              src={product.image || "/data/product"}
+              src={product.image || "/data/product"} // Default path if image is missing
               alt={product.name}
               width={300}
               height={300}
@@ -42,4 +42,3 @@ export default function HighQualityPage() {
     </div>
   )
 }
-

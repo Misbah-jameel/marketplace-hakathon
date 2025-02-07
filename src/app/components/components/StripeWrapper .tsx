@@ -1,4 +1,3 @@
-"use client";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./CheckoutForm";
@@ -20,17 +19,11 @@ export default function StripeWrapper({ amount, currency = "usd" }: {
   let stripeAmount: number;
   try {
     stripeAmount = convertToSubCurrency(amount, normalizedCurrency);
+    if (isNaN(stripeAmount) || stripeAmount < 1) {
+      throw new Error('Amount too small or invalid');
+    }
   } catch (error) {
     throw new Error(`Currency conversion failed: ${(error as Error).message}`);
-  }
-
-  if (stripeAmount < 1) {
-    throw new Error('Amount too small');
-  }if (isNaN(amount) || amount <= 0) {
-    throw new Error("Invalid amount. Amount must be a positive number.");
-  }
-  if (!supportedCurrencies.includes(currency.toLowerCase())) {
-    throw new Error(`Unsupported currency: ${currency}`);
   }
 
   const options = {
