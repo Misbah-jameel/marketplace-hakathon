@@ -50,3 +50,14 @@
 //     </motion.div>
 //   )
 // }
+import React from 'react';
+
+const WishlistPage = () => {
+  return (
+    <div>
+      <h1 className='text-center text-red-600 text-semibold'>Wishlist is empty</h1>
+    </div>
+  );
+}
+
+export default WishlistPage;  
