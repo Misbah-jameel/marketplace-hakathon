@@ -13,7 +13,7 @@ import { products } from "@/app/data/products";
 const caveat = Caveat({ subsets: ["latin"] });
 
 interface PageProps {
-  params: { id: string };
+  params: { slug: string };
   searchParams?: Record<string, string | string[] | undefined>;
 }
 
@@ -24,8 +24,7 @@ export default function ProductPage({ params }: PageProps) {
   const [isLoading, setIsLoading] = useState(true); 
   const [error, setError] = useState<string | null>(null); 
 
-  // Get the productId directly from params
-  const productId = params.id;
+  const productSlug = params.slug;
 
   useEffect(() => {
     const fetchProduct = () => {
@@ -33,8 +32,7 @@ export default function ProductPage({ params }: PageProps) {
       setError(null);
 
       try {
-        const id = Number(productId); // Safe conversion from string to number
-        const foundProduct = products.find((p) => p.id === id);
+        const foundProduct = products.find((p) => p.slug === productSlug);
 
         if (foundProduct) {
           setProduct(foundProduct);
@@ -50,10 +48,10 @@ export default function ProductPage({ params }: PageProps) {
       }
     };
 
-    if (productId) {
+    if (productSlug) {
       fetchProduct();
     }
-  }, [productId]);
+  }, [productSlug]);
 
   const renderStars = (rating: number) => {
     return Array(5)
