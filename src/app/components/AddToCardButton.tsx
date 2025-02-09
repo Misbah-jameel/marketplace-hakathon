@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { ShoppingCart } from "lucide-react"
 import { motion } from "framer-motion"
-import { useCart } from "../contexts/CartContext"
+import { useCart } from "@/contexts/CartContext"
 import { Button } from "@/app/components1/ui/button"
 
 type Product = {

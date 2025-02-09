@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { ShoppingCart, Heart, User, ShoppingBag, ChevronDown, LogOut, Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { useCart } from "../contexts/CartContext"
+import { useCart } from "@/contexts/CartContext"
 import { useUser, useClerk } from "@clerk/nextjs"
 import {
   DropdownMenu,

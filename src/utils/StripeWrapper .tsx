@@ -1,9 +1,9 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import CheckoutForm from "./CheckoutForm";
+import CheckoutForm from "../components2/CheckoutForm";
 import convertToSubCurrency from "@/app/lib/ConvertToSubCurrency";
 
-const stripePromise = loadStripe("pk_test_51QmBnPCcZIekufMkZWyWHKZOMGoxm7WXgWoLE6VtOnDNRrpEBmYtZu6D8i4nKeyWNAbBrcQD3Jg3YqaDmrCIFuIp00fgXSyqL6");
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 export default function StripeWrapper({ amount, currency = "usd" }: { 
   amount: number; 

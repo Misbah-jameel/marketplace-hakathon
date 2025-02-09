@@ -1,6 +1,6 @@
 "use client";
 
-import { useCart, type CartItem } from "../contexts/CartContext";
+import { useCart, type CartItem } from "@/contexts/CartContext";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -77,7 +77,7 @@ export default function CartPage() {
                 className="flex items-center border-b border-gray-200 py-4"
               >
                 <Image
-                  src={item.image || "/botel.avif"}
+                  src={item.image || "/data/product"}
                   alt={item.name}
                   width={80}
                   height={80}
