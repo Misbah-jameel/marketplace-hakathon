@@ -134,7 +134,7 @@
 // // }
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "../../../../components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/components1/ui/card"
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts"
 
 const data = [

@@ -1,7 +1,7 @@
 import "./globals.css"
 import { Montserrat, Lora, Inter } from 'next/font/google'
 import { ClerkProvider } from "@clerk/nextjs"
-import { ThemeProvider } from "../../components/ui/ThemeProvider"
+import { ThemeProvider } from "@/app/components1/ui/ThemeProvider"
 import { Providers } from "./provider"
 import React from "react"
 

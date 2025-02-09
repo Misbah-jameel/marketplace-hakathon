@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Heart } from "lucide-react"
 import { motion } from "framer-motion"
 import { useWishlist } from "../contexts/WishlistContext"
-import { Button } from "../../../components/ui/button"
+import { Button } from "@/app/components1/ui/button"
 
 type Product = {
   id: number

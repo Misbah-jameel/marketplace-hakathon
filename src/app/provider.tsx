@@ -7,7 +7,7 @@ import { useEffect } from "react"
 import Navbar from "@/app/components/Navbar"
 import Footer from "@/app/components/Footer"
 import React from 'react'
-import { ThemeWrapper } from "../../components/themeWraper"
+import { ThemeWrapper } from "@/app/components1/ui/themeWraper"
 import { WishlistProvider } from "./contexts/WishlistContext"
 import { CartProvider } from "./contexts/CartContext"
 

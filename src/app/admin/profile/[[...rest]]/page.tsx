@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "../../../../components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "../../../../components/ui/avatar"
-import { Button } from "../../../../components/ui/button"
-import { Badge } from "../../../../components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/components1/ui/card"
+import { Avatar, AvatarFallback, AvatarImage } from "@/app/components1/ui/avatar"
+import { Button } from "@/app/components1/ui/button"
+import { Badge } from "@/app/components1/ui/badge"
 import { Calendar, Mail, Phone, MapPin, Briefcase, GraduationCap, Globe } from "lucide-react"
 
 export default function ProfilePage() {

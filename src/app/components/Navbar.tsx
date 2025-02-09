@@ -11,8 +11,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../../../components/ui/dropdown-menu"
-import { ThemeToggle } from "../../../components/ui/ThemeToggle"
+} from "@/app/components1/ui/dropdown-menu"
+import { ThemeToggle } from "@/app/components1/ui/ThemeToggle"
 
 interface MenuProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -271,4 +271,3 @@ function MobileMenu({ user, cartItemCount, handleLogout, closeMenu }: MobileMenu
     </>
   )
 }
-

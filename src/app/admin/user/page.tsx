@@ -1,5 +1,5 @@
-import { Button } from "../../../../components/ui/button"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../../../components/ui/table"
+import { Button } from "@/app/components1/ui/button"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/app/components1/ui/table"
 
 const users = [
     { id: 1, name: "Ahmed Khan", email: "ahmed.khan@muslimmail.com", role: "Admin" },

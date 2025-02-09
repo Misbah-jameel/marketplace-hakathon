@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "../../components/ui/avatar";
-import HeroSection from "./components/HeroSection";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/app/components1/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/app/components1/ui/avatar";
+import HeroSection from "@/app/components/HeroSection";
 
 const products = [
   {

@@ -2,19 +2,19 @@
 "use client";
 import Image from "next/image";
 import { Star } from "lucide-react";
-import { RadioGroup, RadioGroupItem } from "../../../../components/ui/radio-group";
+import { RadioGroup, RadioGroupItem } from "@/app/components1/ui/radio-group";
 import AddToCartButton from "@/app/components/AddToCardButton";
 import AddToWishlistButton from "@/app/components/AddToWishlist";
 import { useState } from "react";
 import { products } from "@/app/data/products";
 
 export default function ProductPage() {
- 
-  const product = products.find((p) => p.id === 1); 
+  // Directly get the product by its id or any other property you want to match
+  const product = products.find((p) => p.id === 1);  // Example: You can use dynamic ids or any other condition
 
   if (!product) return <p className="text-center text-red-500">Product not found</p>;
 
-  
+  // State hooks for size and color selection
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [selectedSize, setSelectedSize] = useState(product?.availableSizes[0] || "M");
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -34,7 +34,7 @@ export default function ProductPage() {
         </div>
         <div className="flex flex-col justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-UniqueShop-pink mb-2">{product.name}</h1>
+            <h1 className="text-3xl font-bold text-uniqueshop-pink mb-2">{product.name}</h1>
             <div className="flex items-center mb-4">
               {[...Array(5)].map((_, i) => (
                 <Star

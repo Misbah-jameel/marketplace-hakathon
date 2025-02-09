@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "../../../../components/ui/card"
-import { Button } from "../../../../components/ui/button"
-import { Input } from "../../../../components/ui/input"
-import { Badge } from "../../../../components/ui/badge"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../../../components/ui/table"
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/components1/ui/card"
+import { Button } from "@/app/components1/ui/button"
+import { Input } from "@/app/components1/ui/input"
+import { Badge } from "@/app/components1/ui/badge"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/app/components1/ui/table"
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts"
 
 const products = [

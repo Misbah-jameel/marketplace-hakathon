@@ -4,7 +4,7 @@ import { useState } from "react"
 import { ShoppingCart } from "lucide-react"
 import { motion } from "framer-motion"
 import { useCart } from "../contexts/CartContext"
-import { Button } from "../../../components/ui/button"
+import { Button } from "@/app/components1/ui/button"
 
 type Product = {
   id: number
@@ -37,4 +37,3 @@ export default function AddToCartButton({ product }: { product: Product }) {
     </motion.div>
   )
 }
-

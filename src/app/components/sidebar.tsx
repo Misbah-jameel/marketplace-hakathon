@@ -6,7 +6,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { LayoutDashboard, ShoppingBag, Users, Settings, ChevronLeft, Menu } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "../../../components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/app/components1/ui/avatar"
 
 const sidebarItems = [
   { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },

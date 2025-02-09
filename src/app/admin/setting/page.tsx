@@ -1,6 +1,6 @@
-import { Button } from "../../../../components/ui/button"
-import { Input } from "../../../../components/ui/input"
-import { Label } from "../../../../components/ui/label"
+import { Button } from "@/app/components1/ui/button"
+import { Input } from "@/app/components1/ui/input"
+import { Label } from "@/app/components1/ui/label"
 
 export default function SettingsPage() {
   return (
