@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 // Secret Key from .env
-const stripe = new Stripe(process.env.API_STRIPE_SECRET_KEY!, {});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {});
 
 export async function POST(request: Request) {
   try {
