@@ -1,413 +1,57 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// // /* eslint-disable @typescript-eslint/no-unused-vars */
-// // "use client";
-// // import { useState, useEffect } from "react";
-// // import { useRouter } from "next/router";
-// // import Image from "next/image";
-// // import { Caveat } from "next/font/google";
-// // import { Star, Loader, AlertCircle } from "lucide-react";
-// // import AddToCartButton from "@/app/components/AddToCardButton";
-// // import AddToWishlistButton from "@/app/components/AddToWishlist";
-// // import { RadioGroup, RadioGroupItem } from "../../../../components/ui/radio-group";
-// // import { products } from "@/app/data/products";
 
-// // const caveat = Caveat({ subsets: ["latin"] });
+"use client";
+import Image from "next/image";
+import { Star } from "lucide-react";
+import { RadioGroup, RadioGroupItem } from "../../../../components/ui/radio-group";
+import AddToCartButton from "@/app/components/AddToCardButton";
+import AddToWishlistButton from "@/app/components/AddToWishlist";
+import { useState } from "react";
+import { products } from "@/app/data/products";
 
-// // interface PageProps {
-// //   params: { slug: string };
-// //   searchParams?: Record<string, string | string[] | undefined>;
-// // }
+export default function ProductPage() {
+ 
+  const product = products.find((p) => p.id === 1); 
 
-// // export default function ProductPage({ params }: PageProps) {
-// //   const [product, setProduct] = useState<(typeof products)[0] | null>(null);
-// //   const [selectedColor, setSelectedColor] = useState<string>(""); 
-// //   const [selectedSize, setSelectedSize] = useState<string>(""); 
-// //   const [isLoading, setIsLoading] = useState(true); 
-// //   const [error, setError] = useState<string | null>(null); 
+  if (!product) return <p className="text-center text-red-500">Product not found</p>;
 
-// //   const productSlug = params.slug;
-
-// //   useEffect(() => {
-// //     const fetchProduct = () => {
-// //       setIsLoading(true);
-// //       setError(null);
-
-// //       try {
-// //         const foundProduct = products.find((p) => p.slug === productSlug);
-
-// //         if (foundProduct) {
-// //           setProduct(foundProduct);
-// //           setSelectedColor(foundProduct.colors[0]);
-// //           setSelectedSize(foundProduct.availableSizes[0]);
-// //         } else {
-// //           throw new Error("Product not found");
-// //         }
-// //       } catch (err) {
-// //         setError("An error occurred while loading the product. Please try again.");
-// //       } finally {
-// //         setIsLoading(false);
-// //       }
-// //     };
-
-// //     if (productSlug) {
-// //       fetchProduct();
-// //     }
-// //   }, [productSlug]);
-
-// //   const renderStars = (rating: number) => {
-// //     return Array(5)
-// //       .fill(0)
-// //       .map((_, i) => (
-// //         <Star
-// //           key={i}
-// //           className={`w-5 h-5 ${i < Math.floor(rating) ? "fill-yellow-400 text-yellow-400" : "fill-gray-200 text-gray-200"}`}
-// //         />
-// //       ));
-// //   };
-
-// //   if (isLoading) {
-// //     return (
-// //       <div className="flex justify-center items-center h-screen">
-// //         <Loader className="w-10 h-10 animate-spin text-pink-500" />
-// //       </div>
-// //     );
-// //   }
-
-// //   if (error) {
-// //     return (
-// //       <div className="flex flex-col justify-center items-center h-screen">
-// //         <AlertCircle className="w-16 h-16 text-red-500 mb-4" />
-// //         <p className="text-red-500 mb-4 text-center">{error}</p>
-// //       </div>
-// //     );
-// //   }
-
-// //   if (!product) {
-// //     return <div className="text-center mt-8">Product not found</div>;
-// //   }
-
-// //   return (
-// //     <div className="container mx-auto px-4 py-8">
-// //       <div className="flex flex-col md:flex-row gap-8 mb-16">
-// //         <div className="md:w-1/2">
-// //           <div className="relative h-96 w-full overflow-hidden rounded-lg">
-// //             <Image
-// //               src={product.image || "/22.avif"}
-// //               alt={product.name}
-// //               layout="fill"
-// //               objectFit="cover"
-// //               className="hover:scale-110 transition-transform duration-200"
-// //             />
-// //           </div>
-// //         </div>
-// //         <div className="md:w-1/2 space-y-6">
-// //           <h1 className={`${caveat.className} text-4xl font-bold text-purple-800`}>{product.name}</h1>
-// //           <div className="flex items-center gap-2">
-// //             {renderStars(product.rating)}
-// //             <span className="text-gray-600">({product.reviews} reviews)</span>
-// //           </div>
-// //           <p className="text-2xl font-bold text-purple-600">${product.price}</p>
-// //           <p className="text-gray-600">{product.description}</p>
-
-// //           <div className="space-y-4">
-// //             <div>
-// //               <h3 className="text-lg font-semibold mb-2">Color</h3>
-// //               <RadioGroup value={selectedColor} onValueChange={setSelectedColor}>
-// //                 {product.colors.map((color) => (
-// //                   <RadioGroupItem key={color} value={color}>
-// //                     {color}
-// //                   </RadioGroupItem>
-// //                 ))}
-// //               </RadioGroup>
-// //             </div>
-
-// //             <div>
-// //               <h3 className="text-lg font-semibold mb-2">Size</h3>
-// //               <RadioGroup value={selectedSize} onValueChange={setSelectedSize}>
-// //                 {product.availableSizes.map((size) => (
-// //                   <RadioGroupItem key={size} value={size}>
-// //                     {size}
-// //                   </RadioGroupItem>
-// //                 ))}
-// //               </RadioGroup>
-// //             </div>
-// //           </div>
-
-// //           <div className="flex space-x-4">
-// //             <AddToCartButton product={product} />
-// //             <AddToWishlistButton product={product} />
-// //           </div>
-// //         </div>
-// //       </div>
-// //     </div>
-// //   );
-// // }
-// /* eslint-disable @typescript-eslint/no-unused-vars */
-// "use client";
-// import { useState, useEffect } from "react";
-// import { useRouter } from "next/router";
-// import Image from "next/image";
-// import { Caveat } from "next/font/google";
-// import { Star, Loader, AlertCircle } from "lucide-react";
-// import AddToCartButton from "@/app/components/AddToCardButton";
-// import AddToWishlistButton from "@/app/components/AddToWishlist";
-// import { RadioGroup, RadioGroupItem } from "../../../../components/ui/radio-group";
-// import { products } from "@/app/data/products";
-
-// const caveat = Caveat({ subsets: ["latin"] });
-
-// interface PageProps {
-//   params: { slug: string };
-//   searchParams?: Record<string, string | string[] | undefined>;
-// }
-
-// export default function ProductPage({ params }: PageProps) {
-//   const [product, setProduct] = useState<typeof products[0] | null>(null); // Improved type definition
-//   const [selectedColor, setSelectedColor] = useState<string>("");
-//   const [selectedSize, setSelectedSize] = useState<string>("");
-//   const [isLoading, setIsLoading] = useState(true);
-//   const [error, setError] = useState<string | null>(null);
-
-//   const productSlug = params.slug;
-
-//   useEffect(() => {
-//     const fetchProduct = () => {
-//       setIsLoading(true);
-//       setError(null);
-
-//       try {
-//         const foundProduct = products.find((p) => p.slug === productSlug);
-
-//         if (foundProduct) {
-//           setProduct(foundProduct);
-//           setSelectedColor(foundProduct.colors[0]);
-//           setSelectedSize(foundProduct.availableSizes[0]);
-//         } else {
-//           throw new Error("Product not found");
-//         }
-//       } catch (err) {
-//         setError("An error occurred while loading the product. Please try again.");
-//       } finally {
-//         setIsLoading(false);
-//       }
-//     };
-
-//     if (productSlug) {
-//       fetchProduct();
-//     }
-//   }, [productSlug]);
-
-//   const renderStars = (rating: number) => {
-//     return Array(5)
-//       .fill(0)
-//       .map((_, i) => (
-//         <Star
-//           key={i}
-//           className={`w-5 h-5 ${i < Math.floor(rating) ? "fill-yellow-400 text-yellow-400" : "fill-gray-200 text-gray-200"}`}
-//         />
-//       ));
-//   };
-
-//   if (isLoading) {
-//     return (
-//       <div className="flex justify-center items-center h-screen">
-//         <Loader className="w-10 h-10 animate-spin text-pink-500" />
-//       </div>
-//     );
-//   }
-
-//   if (error) {
-//     return (
-//       <div className="flex flex-col justify-center items-center h-screen">
-//         <AlertCircle className="w-16 h-16 text-red-500 mb-4" />
-//         <p className="text-red-500 mb-4 text-center">{error}</p>
-//       </div>
-//     );
-//   }
-
-//   if (!product) {
-//     return <div className="text-center mt-8">Product not found</div>;
-//   }
-
-//   return (
-//     <div className="container mx-auto px-4 py-8">
-//       <div className="flex flex-col md:flex-row gap-8 mb-16">
-//         <div className="md:w-1/2">
-//           <div className="relative h-96 w-full overflow-hidden rounded-lg">
-//             <Image
-//               src={product.image || "/22.avif"}
-//               alt={product.name}
-//               layout="fill"
-//               objectFit="cover"
-//               className="hover:scale-110 transition-transform duration-200"
-//             />
-//           </div>
-//         </div>
-//         <div className="md:w-1/2 space-y-6">
-//           <h1 className={`${caveat.className} text-4xl font-bold text-purple-800`}>{product.name}</h1>
-//           <div className="flex items-center gap-2">
-//             {renderStars(product.rating)}
-//             <span className="text-gray-600">({product.reviews} reviews)</span>
-//           </div>
-//           <p className="text-2xl font-bold text-purple-600">${product.price}</p>
-//           <p className="text-gray-600">{product.description}</p>
-
-//           <div className="space-y-4">
-//             <div>
-//               <h3 className="text-lg font-semibold mb-2">Color</h3>
-//               <RadioGroup value={selectedColor} onValueChange={setSelectedColor}>
-//                 {product.colors.map((color) => (
-//                   <RadioGroupItem key={color} value={color}>
-//                     {color}
-//                   </RadioGroupItem>
-//                 ))}
-//               </RadioGroup>
-//             </div>
-
-//             <div>
-//               <h3 className="text-lg font-semibold mb-2">Size</h3>
-//               <RadioGroup value={selectedSize} onValueChange={setSelectedSize}>
-//                 {product.availableSizes.map((size) => (
-//                   <RadioGroupItem key={size} value={size}>
-//                     {size}
-//                   </RadioGroupItem>
-//                 ))}
-//               </RadioGroup>
-//             </div>
-//           </div>
-
-//           <div className="flex space-x-4">
-//             <AddToCartButton product={product} />
-//             <AddToWishlistButton product={product} />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-"use client"
-
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import { Caveat } from "next/font/google"
-import { Star, Loader, AlertCircle } from "lucide-react"
-import AddToCartButton from "@/app/components/AddToCardButton"
-import AddToWishlistButton from "@/app/components/AddToWishlist"
-import { RadioGroup, RadioGroupItem } from "../../../../components/ui/radio-group"
-import { products } from "@/app/data/products"
-
-const caveat = Caveat({ subsets: ["latin"] })
-
-interface PageProps {
-  params: { slug: string }
-}
-
-export default function ProductPage({ params }: PageProps) {
-  const [product, setProduct] = useState<(typeof products)[0] | null>(null)
-  const [selectedColor, setSelectedColor] = useState<string>("")
-  const [selectedSize, setSelectedSize] = useState<string>("")
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  const productSlug = params.slug
-
-  useEffect(() => {
-    const fetchProduct = () => {
-      setIsLoading(true)
-      setError(null)
-
-      try {
-        const foundProduct = products.find((p) => p.slug === productSlug)
-
-        if (foundProduct) {
-          setProduct(foundProduct)
-          setSelectedColor(foundProduct.colors[0])
-          setSelectedSize(foundProduct.availableSizes[0])
-        } else {
-          throw new Error("Product not found")
-        }
-      } catch (err) {
-        setError("An error occurred while loading the product. Please try again.")
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    if (productSlug) {
-      fetchProduct()
-    }
-  }, [productSlug])
-
-  const renderStars = (rating: number) => {
-    return Array(5)
-      .fill(0)
-      .map((_, i) => (
-        <Star
-          key={i}
-          className={`w-5 h-5 ${i < Math.floor(rating) ? "fill-yellow-400 text-yellow-400" : "fill-gray-200 text-gray-200"}`}
-        />
-      ))
-  }
-
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <Loader className="w-10 h-10 animate-spin text-pink-500" />
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div className="flex flex-col justify-center items-center h-screen">
-        <AlertCircle className="w-16 h-16 text-red-500 mb-4" />
-        <p className="text-red-500 mb-4 text-center">{error}</p>
-      </div>
-    )
-  }
-
-  if (!product) {
-    return <div className="text-center mt-8">Product not found</div>
-  }
+  
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [selectedSize, setSelectedSize] = useState(product?.availableSizes[0] || "M");
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [selectedColor, setSelectedColor] = useState(product?.colors[0] || "Black");
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="flex flex-col md:flex-row gap-8 mb-16">
-        <div className="md:w-1/2">
-          <div className="relative h-96 w-full overflow-hidden rounded-lg">
-            <Image
-              src={product.image || "/22.avif"}
-              alt={product.name}
-              layout="fill"
-              objectFit="cover"
-              className="hover:scale-110 transition-transform duration-200"
-            />
-          </div>
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="relative aspect-square">
+          <Image
+            src={product.image || "/data/products"}
+            alt={product.name}
+            layout="fill"
+            objectFit="cover"
+            className="rounded-lg"
+          />
         </div>
-        <div className="md:w-1/2 space-y-6">
-          <h1 className={`${caveat.className} text-4xl font-bold text-purple-800`}>{product.name}</h1>
-          <div className="flex items-center gap-2">
-            {renderStars(product.rating)}
-            <span className="text-gray-600">({product.reviews} reviews)</span>
-          </div>
-          <p className="text-2xl font-bold text-purple-600">${product.price}</p>
-          <p className="text-gray-600">{product.description}</p>
-
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg font-semibold mb-2">Color</h3>
-              <RadioGroup value={selectedColor} onValueChange={setSelectedColor}>
-                {product.colors.map((color) => (
-                  <RadioGroupItem key={color} value={color}>
-                    {color}
-                  </RadioGroupItem>
-                ))}
-              </RadioGroup>
+        <div className="flex flex-col justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-UniqueShop-pink mb-2">{product.name}</h1>
+            <div className="flex items-center mb-4">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  className={`w-5 h-5 ${
+                    i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
+                  }`}
+                />
+              ))}
+              <span className="ml-2 text-gray-600">({product.rating})</span>
             </div>
+            <p className="text-gray-600 mb-6">{product.description}</p>
+            <p className="text-2xl font-bold text-UniqueShop-pink mb-6">${product.price.toFixed(2)}</p>
 
-            <div>
+            <div className="mb-6">
               <h3 className="text-lg font-semibold mb-2">Size</h3>
-              <RadioGroup value={selectedSize} onValueChange={setSelectedSize}>
+              <RadioGroup value={selectedSize} onValueChange={setSelectedSize} className="flex gap-4">
                 {product.availableSizes.map((size) => (
                   <RadioGroupItem key={size} value={size}>
                     {size}
@@ -415,15 +59,24 @@ export default function ProductPage({ params }: PageProps) {
                 ))}
               </RadioGroup>
             </div>
-          </div>
 
-          <div className="flex space-x-4">
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold mb-2">Color</h3>
+              <RadioGroup value={selectedColor} onValueChange={setSelectedColor} className="flex gap-4">
+                {product.colors.map((color) => (
+                  <RadioGroupItem key={color} value={color}>
+                    {color}
+                  </RadioGroupItem>
+                ))}
+              </RadioGroup>
+            </div>
+          </div>
+          <div className="flex gap-4">
             <AddToCartButton product={product} />
             <AddToWishlistButton product={product} />
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
-
